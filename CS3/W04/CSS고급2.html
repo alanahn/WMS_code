@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            width: 15em;
+            height: 5em;
+            border: 1px solid lightcoral;
+        }
+        .hidden { overflow: hidden;}
+        .scroll { overflow: scroll;}
+
+        @keyframes bomb {
+            0% {
+            font-size: 100%; /* 시작 크기 */
+            }
+            50% {
+                font-size: 500%; /* 중간 크기 */
+            }
+            100% {
+                font-size: 100%; /* 최종 크기 */
+            }
+        }
+
+        /* h3 {
+            animation: bomb 3s ease-in-out infinite;
+        } */
+
+        span{
+            font-size: 16px;
+            transition: font-size 0.3s ease;
+        }
+        span:hover {
+            font-size: 500%;
+        }
+
+        div {
+            display: inline-block;
+            padding: 5px;
+            color: white;
+            background: red;
+        }
+
+        div#rotate {
+            transform: rotate(20deg);
+        }
+        div#skew { transform: skew(0deg, -200deg);}
+        div#translate { transform: translateY(100px);}
+        div#scale { transform: scale(3,1);}
+    </style>
+</head>
+<body>
+    <p class="hidden">모든 국민은 주거의 자유를 침해받지 아니한다. 주거에 대한 압수나 수색을 할 때에는 검사의 신청에 의하여 법관이 발부한 영장을 제시하여야 한다. 헌법재판소의 조직과 운영 기타 필요한 사항은 법률로 정한다.</p>
+    <p class="visible">대한민국의 국민이 되는 요건은 법률로 정한다. 대통령은 취임에 즈음하여 다음의 선서를 한다. 국회는 의원의 자격을 심사하며, 의원을 징계할 수 있다.</p>
+    <p class="scroll">국회의 회의는 공개한다. 다만, 출석의원 과반수의 찬성이 있거나 의장이 국가의 안전보장을 위하여 필요하다고 인정할 때에는 공개하지 아니할 수 있다.</p>
+
+    <h3>펑!@!@</h3>
+    <hr>
+    <p>꽝! 글자가 3초동안 500%에서 시작하여 100%로 바뀌는 애니메이션입니다. 무한 반복합니다.</p>
+
+    <p id="e"><span>꽝!!</span> 글자에 마우스를 올려보세요.</p>
+
+    <div id="rotate">rotate</div>
+    <div id="skew">skew</div>
+    <div id="translate">translate</div>
+    <div id="scale">scale</div>
+</body>
+</html>

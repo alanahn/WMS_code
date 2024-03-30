@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            border: 1px solid lawngreen;
+            text-align: center;
+            color: white;
+            background: red;
+        }
+        #down:hover {
+            position: relative;
+            left: 20px;
+            top: 20px;
+            background: green;
+        }
+        #up:hover {
+            position: relative;
+            left: 20px;
+            top: 20px;
+            background: green;
+        }
+        #ab1 {
+            display: inline-block;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+        #fixed {
+            position: fixed;
+            top: 200px;
+            left: 20px;
+            z-index: -5;
+        }
+        #float {
+            float: right;
+        }
+        #hidden {
+            visibility: visible;
+        }
+        #hidden:hover {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- 5-02~5-05 -->
+    <h3>상대배치, relative</h3>
+    <hr>
+    <div style="height: 1000px;">T</div>
+    <div id="down">h</div>
+    <div id="ab1">a</div>
+    <div id="fixed">n</div>
+    <div id="up">k</div>
+    <div id="float">s</div>
+    <div id="hidden">j</div>
+</body>
+</html>
