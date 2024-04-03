@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../7. WMS_web/원본"
+		},
+		{
+			"path": "../../../../../../7. WMS_web/백업"
+		},
+		{
+			"path": "../../../2024_WMS_project"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "2024_WMS_project"
+	}
+}
