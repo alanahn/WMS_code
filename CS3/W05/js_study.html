@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function over(obj) {
+            obj.src="https://cdn.imweb.me/thumbnail/20190610/89b646bc2b04f.png";
+        }
+        function out(obj) {
+            obj.src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2016/08/04/20160804000620_0.jpg";
+        }
+    </script>
+    <!-- 외부에서 자바스크립트 코드 가져오기 -->
+    <script src="test.js"></script>
+</head>
+
+<body>
+    <!-- 이벤트 리스너 속에 자바스크립트 코드 작성 -->
+    <h3>마우스를 올려보세요.</h3>
+    <img src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2016/08/04/20160804000620_0.jpg" 
+    alt="image" onmouseover="this.src='https\://cdn.imweb.me/thumbnail/20190610/89b646bc2b04f.png'" onmouseout="this.src='https\://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2016/08/04/20160804000620_0.jpg'">
+    <!-- script 태그로 자바스크립트 코드 작성 -->
+    <h3>마우스 올려라~~</h3>
+    <img src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2016/08/04/20160804000620_0.jpg" 
+    alt="image" onmouseover="over(this)" onmouseout="out(this)">
+    <h3>외부 자바스크립트 적용 마우스 올려라~~</h3>
+    <img src="https://res.heraldm.com/phpwas/restmb_idxmake.php?idx=507&simg=/content/image/2016/08/04/20160804000620_0.jpg" 
+    alt="image" onmouseover="over_out(this)" onmouseout="out_out(this)">
+    <hr>
+    <!-- 링크의 자바스크립트 코드 작성 -->
+    <a href="javascript:alert('클릭하셨어요.')">클릭</a>
+
+    <script>
+        document.write("<h3> hello </h3>");
+        document.write("2+5=");
+        document.write("<mark>7</mark><br>");
+
+        let x; //전역 변수
+        function f() {
+            let y; // 지역 변수
+            x = 10;
+            y = 20;
+            z = 30; //새로운 전역 변수 생성됨.
+            if(y == 20) {
+                let b = 40;
+                b++;
+                document.write("b="+b+"<br>");
+            }
+            document.write("y="+y+"<br>");
+        }
+
+        f();
+
+        document.write("z="+z+"<br>");
+        // 지역변수 호출 안됨.
+        // document.write("b="+b+"<br>");
+
+        x = 30 + 100 - 50 * 2 / 1 * z;
+        z = 100 % 2;
+        document.write("x="+x+"<br>");
+        document.write("z="+z+"<br>");
+
+        //비교연산 ==, !=, <=, >=, >, <
+        //논리연산 &&, ||
+
+        //조건연산
+        let a=3, b=5;
+        document.write("a="+a+", b="+b+"<br><br>");
+        document.write("두 수의 차이 : "+ ((a>b)?(a-b):(b-a)));
+
+        // 문자열 연산
+        document.write("<br>abc"+23+"<br>")
+        document.write(23+"abc"+"<br>")
+        document.write(23+53+"abc"+"<br>")
+        document.write("aa"+23+53+"abc"+"<br>")
+
+        // 조건문
+        // if (조건) {
+        //     내용;
+        // } else if (조건) {
+        //     내용;
+        // } else {
+        //     내용;
+        // }
+
+        //스위치문
+        let price = 0;
+        let coffee = prompt("커퓌?");
+        switch(coffee) {
+            case "espresso":
+            case "에스프레소":
+                price = 2000;
+                break;
+            case "카푸치노":
+                price = 3000;
+                break;
+            default:
+                document.write(coffee+"는 없습니다.");
+        }
+        if(price!=0) {
+            document.write(coffee+"는"+ price + "입니다.");
+        }
+
+        // 반복문
+        for (let size=10; size < 35; size+=5) {
+            document.write("<span style=font-size:"+ size + "px>");
+            document.write(size+"px </span>");
+        }
+        document.write("<br>")
+        let size_font=50;
+        while (size_font > 0) {
+            document.write("<span style=font-size:"+ size_font + "px>");
+            document.write(size_font+"px </span>");
+            size_font-=10;
+        }
+
+        // ex-19 ~ ex-23 이어서 하기
+    </script>
+</body>
+</html>
