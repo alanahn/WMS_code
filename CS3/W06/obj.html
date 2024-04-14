@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체 생성 및 활용
+        //date 객체 생성
+        let today = new Date();
+
+        document.write("현재 시간 : " + today.toLocaleString() + "<br>");
+        document.write("년도 : " + today.getFullYear() + "<br>");
+
+        // 문자열 객체 생성
+        let mystr = new String("자바스크립트 공부 좀 해라~!");
+        document.write(mystr + "<br>");
+        document.write(mystr.length + "<br>");
+        document.write(mystr.replace("자바스크립트", "파이썬") + "<br>");
+        document.write(mystr.split(" ") + "<br>");
+
+        //Math 객체
+        let r = Math.floor(Math.random()*9) + 1;
+        document.write(r + "<br>");
+
+        // 배열(리스트) 
+        // []로 배열 만들기
+        let arr = [20, 5, 8, 15];
+
+        document.write("<hr>");
+
+        for (let i = 0; i < 4; i++) {
+            let size = arr[i];
+            while(size > 0) {
+                document.write("*");
+                size--;
+            }
+            document.write(arr[i] + "<br>");
+        } 
+
+        //객체로 배열 만들기
+        let arr2 = new Array();
+        arr2[0] = 15.1;
+        arr2[1] = 14.1;
+        arr2[2] = 12.1;
+        arr2[3] = 11.1;
+
+        let sum = 0;
+        for(let i = 0; i < arr2.length; i++) {
+            sum += arr2[i];
+        }
+        document.write("합 : " + sum + "<br>");
+        document.write("평균 : " + sum/arr2.length + "<br>");
+
+        document.write(arr2.toString());
+        document.write("<hr>");
+
+        let arr3 = new Array("A", "B", "C");
+        document.write(arr2 + arr3 + "<br>");
+        document.write(arr2.concat(arr3) + "<br>");
+        document.write(arr2.join(arr3) + "<br>");
+        document.write(arr2.reverse() + "<br>");
+        document.write(arr2.slice(1,3) + "<br>");
+        document.write(arr2.sort() + "<br>");
+
+        function inquiry() {
+            return this.balance;
+        }
+        //Object() 사용자 객체 만들기
+        let account = new Object();
+        account.owner = "alan";
+        account.code = "111";
+        account.balance = "9000000000";
+        account.inquiry = inquiry;
+
+        document.write(account.balance + "<br>");
+        document.write(account.inquiry() + "<br>");
+
+        let account2 = {
+            owner: "엘림",
+            code: "222",
+            balance: 1,
+
+            inquiry: function() {
+                return this.balance + 1000;
+            }
+        }
+
+        document.write(account2.owner + "<br>");
+        document.write(account2.code + "<br>");
+        document.write(account2.inquiry() + "<br>");
+
+        //프로토타입으로 객체 만들기
+        //생성자
+        function Account3(owner, code, balance) {
+            this.owner = owner;
+            this.code = code;
+            this.balance = balance;
+
+            this.inquiry = function() { 
+                return this.balance + 2000;
+            }
+
+            this.deposit = function(money) {
+                this.balance += money;
+            }
+            this.withdraw = function(money) {
+                this.balance -= money;
+                return this.balance;
+            }
+        }
+
+        let account3 = new Account3("맥스", "333", 5000);
+        document.write(account3.owner + "<br>");
+        document.write(account3.code + "<br>");
+        document.write(account3.balance + "<br>");
+        document.write(account3.inquiry() + "<br>");
+
+        account3.deposit(1000000);
+        document.write(account3.inquiry() + "<br>");
+        account3.withdraw(10000000000);
+        document.write(account3.inquiry() + "<br>");
+    </script>
+</body>
+</html>
