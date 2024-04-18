@@ -1,29 +1,104 @@
+<!-- 예제 코드 -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>함수 만들기</title>
-    <script>
-     // 아래 함수를 작성
-      function gugudan(n) { // n을 매개변수로 받아 함수에서 사용
-      	let m = parseInt(n); // 문자열 n을 숫자로 바꿈
-	      	if(m < 0 && m > 9) { // 입력 값이 1~9의 값이 아닐 경우 경고창 띄우기
-      		  alert("잘못입력하셨습니다.");  // 경고창
-      		  return;
-      	  }
-          for(let i = 9; i > 0; i--) {
-            document.write(m +"*" + i + "=" + (m*i) + "<br>");
-          }
-      	// i는 9에서 1까지 반복하는 코드 작성
-      }
-    </script>
-  </head>
-  <body>
-    <h3>구구단 출력 함수 만들기</h3>
-    <hr />
-    <script>
-      let n = prompt("구구단 몇 단을 원하세요", ""); // n은 문자열
-      gugudan(n); // 함수 호출
-    </script>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우주 모험</title>
+    <style>
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background-color: #666;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>우주 모험</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">홈</a></li>
+            <li><a href="#spaceship">우주선 탑승실</a></li>
+            <li><a href="#space">외부 우주</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home">
+        <h2>환영합니다!</h2>
+        <p>우주 모험을 시작합니다. 이곳은 우주 모험에 대한 정보를 제공합니다.</p>
+    </section>
+    
+    <section id="spaceship">
+        <h2>우주선 탑승실</h2>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+        <p>우주선의 내부를 탐험해보세요. 여기는 우주선의 모습을 보여줍니다.</p>
+    </section>
+    
+    <section id="space">
+        <h2>외부 우주</h2>
+        <p>우주선 외부의 아름다운 풍경을 감상하세요. 여기는 우주의 끝을 만날 수 있습니다.</p>
+        <p>우주선 외부의 아름다운 풍경을 감상하세요. 여기는 우주의 끝을 만날 수 있습니다.</p>
+        <p>우주선 외부의 아름다운 풍경을 감상하세요. 여기는 우주의 끝을 만날 수 있습니다.</p>
+        <p>우주선 외부의 아름다운 풍경을 감상하세요. 여기는 우주의 끝을 만날 수 있습니다.</p>
+        <p>우주선 외부의 아름다운 풍경을 감상하세요. 여기는 우주의 끝을 만날 수 있습니다.</p>
+    </section>
+    
+    <footer>
+        <p>우주 모험 페이지 © 2024</p>
+    </footer>
+</body>
 </html>
