@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사각형 이동 애니메이션</title>
+<style>
+    #movingRect {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        left: 0; /* 시작 위치 */
+    }
+</style>
+</head>
+<body>
+<div id="movingRect"></div>
+<div id="star"></div>
+<script>
+const movingRect = document.getElementById('movingRect');
+const star = document.getElementById('star');
+const maxWidth = window.innerWidth - 50; // 사각형이 오른쪽 끝까지 이동할 수 있는 최대 위치
+let position = 0; // 현재 위치
+
+function moveRight() {
+    if (position < maxWidth) {
+        position += 5; // 이동 속도
+        movingRect.style.left = position + 'px';
+
+        // 이동 중 텍스트 표시
+        let stars = '';
+        for (let i = 0; i < position / 10; i++) {
+            star.innerHTML = "*".repeat(i)
+        }
+        console.log("이동 중 " + stars);
+
+        setTimeout(moveRight, 50); // 재귀적으로 호출하여 반복
+    } else {
+        console.log("이동 완료!");
+    }
+}
+
+moveRight(); // 이동 시작
+</script>
+</body>
+</html>
