@@ -16,7 +16,7 @@ Btn_go.addEventListener('click',() => {
     if(p_num <= 0 || p_num >= 100) {
         document.getElementById('alarm').innerHTML = "잘 못 입력하셨습니다.";
     } else {
-        document.getElementById('alarm').innerHTML = "입력 숫자 : ${p_num}";
+        document.getElementById('alarm').innerHTML = `입력 숫자 : ${p_num}`;
 
         if(c_num > p_num) {
             document.getElementById('result').innerHTML = "Up";
@@ -24,7 +24,7 @@ Btn_go.addEventListener('click',() => {
             document.getElementById('result').innerHTML = "Down";
         } else { 
             document.getElementById('result').innerHTML = "Good!";
-            document.getElementById('alarm').innerHTML = "횟수 : ${count}";
+            document.getElementById('alarm').innerHTML = `횟수 : ${count}`;
         }
     }
 })
