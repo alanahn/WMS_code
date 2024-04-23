@@ -1,0 +1,24 @@
+
+
+table {
+    padding: 30Px;
+    background-color: lightcoral;
+}
+
+th {
+    font-size: 50px;
+    padding-bottom: 50Px;
+}
+
+td {
+    text-align: center;
+    font-size: 50px;
+}
+
+#popup {
+    display: none;
+}
+
+#closeBtn {
+    float: right;
+}

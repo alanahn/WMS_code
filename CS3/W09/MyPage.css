@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(190deg, #a5aaff, #55beff);
+}
+
+header {
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+nav {
+    border-radius: 10px;
+    background-color: azure;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: brown;
+}
