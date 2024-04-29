@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="MyPage.css">
     <link rel="stylesheet" href="time.css">
-    <title>Todo</title>
+    <title>MYPAGE</title>
 </head>
 <body>
     <!-- Header Section -->
     <header class="container">
         <h1 class="my-4">Welcome to My Web Page</h1>
+        <div class="login_signup"> 
+            <button id="loginBtn" class="flex-item btn btn-info" onclick="window.location.href='./Receive/Receive.html'">로그인</button>
+            <button id="signupBtn" class="flex-item btn btn-info" onclick="window.location.href='./Send/Send.html'">회원가입</button>
+        </div>
     </header>
 
     <!-- Navigation Section -->
@@ -31,29 +35,40 @@
     
     <hr>
 
-    <div class="container shadow mx-auto mt-5 p-5 w-70">
+    <!-- 시간확인하기와 타이머를 따로따로 완성할 하는 것을 권장 -->
+    <div class="center container shadow mx-auto mt-5 p-5 w-70">
         <button id="timeBtn" class="btn-time btn btn-info" onclick="current_clock()">시간확인하기</button>
+        <button id="timerBtn" class="btn-time btn btn-info" onclick="timer_clock()">타이머</button>
     </div>
-    
-    <section id="popup">
-            <table>
-                <tr>
-                    <th colspan="5">현재 시간 표시</th>
-                </tr>
-                <tr>
-                    <td class="content c_meridiem">00</td>
-                    <td class="content c_hours">00</td>
-                    <td>:</td>
-                    <td class="content c_minutes">00</td>
-                    <td>:</td>
-                    <td class="content c_seconds">00</td>
-                </tr>
-                <tr>
-                    <button id="closeBtn" class="btn-close btn btn-info">X</button>
-                </tr>
 
-            </table>
-    </section>
+    <div id="c_popup">
+        <button id="closeBtn" class="btn-close btn btn-info">X</button>
+        <table>
+            <tr>
+                <th colspan="5">현재 시간 표시</th>
+            </tr>
+            <tr>
+                <td class="content c_meridiem">00</td>
+                <td class="content c_hours">00</td>
+                <td>:</td>
+                <td class="content c_minutes">00</td>
+                <td>:</td>
+                <td class="content c_seconds">00</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="t_popup">
+        <button id="t_closeBtn" class="t_btn-close btn btn-info">X</button>
+        <div class="title">타이머</div>
+        <div class="time">0</div>
+        <div class="t_btn">
+            <button class="start">시작</button>
+            <button class="stop">정지</button>
+            <!-- 타이머 미션 => 가능하면 미션 추가하기 -->
+            <button class="reset">리셋</button>
+        </div>
+    </div>
 
     <div class="container shadow mx-auto mt-5 p-5 w-70">
         <h2>Up & Down</h2>
@@ -95,6 +110,6 @@
     </footer>
 <script src="Todo.js"></script>
 <script src="Up_Down.js"></script>
-<script src="time.js?ver=0.13"></script>
+<script src="time.js"></script>
 </body>
 </html>
