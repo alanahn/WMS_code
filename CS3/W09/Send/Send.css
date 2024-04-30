@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: linear-gradient(125deg, #4e54c8, #8f94fb);
+}
+
+.su_container {
+    width: 60%;
+    height: 400px;
+    background-color: lightyellow;
+    border-radius: 30px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+}
+
+th {
+    font-size: 100px;
+    padding-bottom: 30px;
+}
+
+td {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.su_id, .su_pw {
+    width: 40%;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.su_td_id, .su_td_pw {
+    padding-left: 30px;
+}
+
+#input_id, #input_pw {
+    width: 50%;
+    height: 40px;
+    text-align: center;
+    background-color: royalblue;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    font-size: 30px;
+}
+
+.su_td_btn {
+    text-align: center;
+}
+
+.send {
+    width: 30%;
+    font-size: 30px;
+    margin-top: 20px;
+    background-color: royalblue;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.send:hover {
+    background-color: darkorange;
+}

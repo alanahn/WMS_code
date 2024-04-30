@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class money {
     public static void main(String[] args) {
@@ -27,5 +28,7 @@ public class money {
         // sum += _allowance;
         // }
         // System.out.println(Arrays.toString(allowanceChart));
+
+        // 입력받는 객체를 만들어 / sc라는 변수에 담아야지...new키워드로 Scanner를 만들면 되겠지?
     }
 }
