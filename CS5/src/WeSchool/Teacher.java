@@ -11,13 +11,13 @@ public class Teacher extends Person {
         this.subject = subject;
     }
 
-    // Method
-    public void teach() {
-        System.out.println(name + " 선생님이 " + subject + " 과목을 가르칩니다.");
-    }
+    // // Method
+    // public void introduce() {
+    // System.out.println(name + " 선생님이 " + subject + " 과목을 가르칩니다.");
+    // }
 
-    @Override
-    public void action() {
-        System.out.println(name + "선생님이 수업을 진행 합니다.");
-    }
+    // @Override
+    // public void action() {
+    // System.out.println(name + "선생님이 수업을 진행 합니다.");
+    // }
 }
