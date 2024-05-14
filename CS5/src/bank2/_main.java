@@ -1,4 +1,4 @@
-package bank;
+package bank2;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class _main {
             System.out.println("4. 잔액조회");
             System.out.println("5. 전체계좌조회");
             System.out.println("6. 종료");
-            System.out.println("항목 입력");
+            System.out.print("항목 입력 : ");
 
             int menu = Integer.parseInt(sc.nextLine());
             switch (menu) {
@@ -25,10 +25,13 @@ public class _main {
                     createAccount();
                     break;
                 case 2:
+                    credit();
                     break;
                 case 3:
+                    devit();
                     break;
                 case 4:
+                    retrieveBalance();
                     break;
                 case 5:
                     retrieveAccount();
@@ -38,6 +41,70 @@ public class _main {
                     break;
             }
         } while (!isExit);
+    }
+
+    private static void retrieveBalance() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("계좌번호 : ");
+        String accNum = sc.nextLine();
+
+        Account account = fABA(accNum);
+        if(account == null) {
+            System.out.println("계좌번호를 정확하게 입력해주세요.");
+            return;
+        }
+
+        System.out.printf("잔액 : %,d\n", account.getBalance());
+    }
+
+    private static void devit() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("계좌번호 : ");
+        String accNum = scan.nextLine();
+
+        Account account = fABA(accNum);
+        if(account == null) {
+            System.out.println("계좌번호를 정확하게 입력해주세요.");
+            return;
+        }
+
+        System.out.println("금액 : ");
+        int amount = Integer.parseInt(scan.nextLine());
+
+        account.withdraw(amount);
+        System.out.println("출금이 완료되었습니다.");
+
+    }
+
+    private static void credit() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("계좌번호 : ");
+        String accNum = scan.nextLine();
+
+        Account account = fABA(accNum);
+        if(account == null) {
+            System.out.println("계좌번호를 정확하게 입력해주세요.");
+            return;
+        }
+
+        System.out.println("금액 : ");
+        int amount = Integer.parseInt(scan.nextLine());
+        
+        account.deposit(amount);
+        System.out.println("입금이 완료되었습니다. 아리가또 고자이마스");
+
+    }
+
+    private static Account fABA(String accNum) {
+        for(int i=0; i < index; i++) {
+            if(accounts[i].getAccNum().equals(accNum)) {
+                return accounts[i];
+            }
+        }
+        return null;
     }
 
     private static void retrieveAccount() {
