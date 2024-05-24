@@ -17,7 +17,7 @@ td {
     float: right;
 }
 
-div#c_popup {
+div#c_popup, div#t_popup {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,4 +28,37 @@ div#c_popup {
 
     display: none;
 }
+
+div#t_popup {
+    width: 300px;
+    background-color: antiquewhite;
+}
+
+.t_btn {
+    display: flex;
+    justify-content: space-around;
+}
+
+button.start, button.stop {
+    width: 150px;
+    font-size: 30px;
+}
+
+.start {
+    background-color: aqua;
+}
+
+.stop {
+    background-color: red;
+    color: white;
+}
+
+div.title, div.time {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+}
+
 

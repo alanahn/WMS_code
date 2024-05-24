@@ -18,10 +18,10 @@
     <nav class="container">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link " href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#updown">Up & Down</a>
+                <a class="nav-link active" href="#updown">Up & Down</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#todo">My To-Do App</a>
@@ -33,11 +33,10 @@
     
     <div class="container shadow mx-auto mt-5 p-5 w-70">
         <button id="timeBtn" class="btn-time btn btn-info" onclick="c_clock()" >시간확인하기</button>
-        <button id="timerBtn" class="btn-time btn btn-info">타이머</button>
+        <button id="timerBtn" class="btn-time btn btn-info" onclick="timer_clock()">타이머</button>
     </div>
 
     <div id="c_popup">
-        
         <table> 
             <tr>
                 <th colspan="5">현재 시간 표시</th>
@@ -54,7 +53,17 @@
         </table>
     </div>
 
-    <div class="container shadow mx-auto mt-5 p-5 w-70">
+    <div id="t_popup">
+        <button id="t_closeBtn" class="btn-close btn btn-info">X</button>
+        <div class="title">타이머</div>
+        <div class="time">0</div>
+        <div class="t_btn">
+            <button class="start">시작</button>
+            <button class="stop">정지</button>
+        </div>
+    </div>
+
+    <div id="updown" class="container shadow mx-auto mt-5 p-5 w-70">
         <h2>Up & Down</h2>
         <hr>
         <div class="box2"> 
