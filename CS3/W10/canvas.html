@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="init()">
+    <canvas id="canvas1" width="200" height="200"
+    style="background-color: aquamarine;">
+    </canvas>
+    <canvas id="canvas2" width="300" height="300"
+    style="background-color: rebeccapurple;">
+    </canvas>
+
+    <canvas id="canvas3" width="300" height="300"
+    style="background-color: antiquewhite;">
+    </canvas>
+
+    <canvas id="canvas4" width="500" height="500"
+    style="background-color: white; border: solid 1px;">
+    </canvas>
+    <script>
+        let canvas1 = document.getElementById('canvas1');
+        let context = canvas1.getContext("2d");
+
+        context.beginPath(); //빈 경로 만들기
+        context.strokeStyle = "blue";
+        context.rect(10, 10, 50, 50); //x, y, w, h
+        context.stroke();
+
+        context.beginPath(); //빈 경로 만들기
+        context.fillStyle = "violet"; // 색채우기
+        context.rect(30, 30, 50, 50); //x, y, w, h
+        context.fill();
+
+        context.font = "20px Gothic";
+        context.fillStyle = "green";
+        context.fillText("Text in Canvas", 50, 100); //글자 쓰기
+
+        let canvas2 = document.getElementById('canvas2');
+        let context2 = canvas2.getContext("2d");
+
+        context2.beginPath();
+        context2.strokeStyle = "red";
+        context2.moveTo(120, 20);  //시작점 설정
+        context2.lineTo(20, 50);
+        context2.lineTo(150,120);
+        context2.lineTo(120,20);
+        context2.stroke();
+
+        context2.beginPath();
+        context2.strokeStyle = "magenta";
+        context2.arc(150, 150, 100, 1, 1.5*Math.PI, false);
+        context2.stroke();
+
+        context2.beginPath();
+        for(let i=0; i<5; i++) {
+            context2.rect(10+i*40, 10+i*20, 50, 50);
+        }
+        context2.lineWidth = 2; // 굵기 설정
+        context2.strokeStyle="black";
+        context2.stroke();
+
+        let canvas3 = document.getElementById('canvas3');
+        let context3 = canvas3.getContext("2d");
+
+        let img = new Image();
+        img.onload = function () {
+            // context3.drawImage(img, 30,30, img.width/3, img.height/3);
+            context3.drawImage(img, 0,0, canvas3.width, canvas3.height);
+        }
+        img.src = "https://cdn-ddanzi.bizhost.kr/files/goodsm/186143836/1630047091_0.jpg"
+
+        let canvas4, context4;
+        function init() {
+            canvas4 = document.getElementById('canvas4');
+            context4 = canvas4.getContext("2d");
+
+            context4.lineWidth = 2;
+            context4.strokeStyle = "blue";
+
+            canvas4.addEventListener('mousemove', function(e) {move(e)}, false);
+            canvas4.addEventListener('mousedown', function(e) {down(e)}, false);
+            canvas4.addEventListener('mouseup', function(e) {up(e)}, false);
+            canvas4.addEventListener('mouseout', function(e) {out(e)}, false);
+        }
+        
+        let startX=0, startY=0;
+        let drawing=false;
+
+        function draw(curX, curY) {
+            context4.beginPath();
+            context4.moveTo(startX, startY);
+            context4.lineTo(curX, curY);
+            context4.stroke();
+        }
+
+        function down(e) {
+            startX = e.offsetX; startY = e.offsetY;
+            drawing = true;
+        }
+
+        function up(e) { drawing=false;}
+
+        function move(e) {
+            if(!drawing) return; //마우스가 안눌린 상태면 종료
+            let curX = e.offsetX, curY = e.offsetY;
+            draw(curX, curY);
+            startX = curX; startY = curY;
+        }
+
+        function out(e) { drawing = false; }
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package bank;
+package bank2;
 
 /**
  * Account
@@ -21,5 +21,21 @@ public class Account {
 
     public void printAccount() {
         System.out.printf("계좌번호 : %s, 이름 : %s, 잔고 : %d%n", accountNumber, name, balance);
+    }
+
+    public String getAccNum() {
+        return this.accountNumber;
+    }
+
+    public void deposit(int amount) {
+        this.balance += amount;
+    }
+
+    public void withdraw(int amount) {
+        this.balance -= amount;
+    }
+
+    public int getBalance() {
+        return this.balance;
     }
 }

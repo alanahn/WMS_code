@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // p1 id를 찾아서 이벤트 등록하기
+        let p;
+        let p1;
+        let p2;
+        function init() {
+            p = document.getElementById('p');
+            p.onmouseover = over;
+            p.onmouseout = out;
+
+            p1 = document.getElementById('p1');
+            p1.addEventListener("mouseover", over1);
+            p1.addEventListener("mouseout", out1);
+
+            p2 = document.getElementById('p2');
+            p2.onmouseover = function () {
+                this.style.backgroundColor = "yellow";
+            }
+
+            p2.addEventListener("mouseout", 
+            function () { this.style.backgroundColor = "white"; } );
+        }
+
+        function over() {
+            p.style.backgroundColor='orchid';
+            // console.log("마우스 올림");
+        }
+        function out() {
+            p.style.backgroundColor='white';
+            // console.log("마우스 내림");
+        }
+        function over1() {
+            p1.style.backgroundColor='black';
+            // console.log("마우스 올림");
+        }
+        function out1() {
+            p1.style.backgroundColor='white';
+            // console.log("마우스 내림");
+        }
+    </script>
+</head>
+<body onload="init()">
+    <!-- 속성을 활용해 이벤트 적용하기 -->
+    <p onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='white'">
+    마우스를 올리면 색 변함</p>
+
+    <!-- 스크립트에서 이벤트 추가하기 -->
+    <p id="p">마우스를 올리면 색 변함</p>
+
+    <!-- 이벤트 리스너로 추가하기 -->
+    <p id="p1">addEventListener()를 이용한 리스너 등록</p>
+
+    <!-- 익명함수 활용한 이벤트 등록 -->
+    <p id="p2">익명함수 활용한 이용한 리스너 등록</p>
+
+    <!-- 이벤트 리스너에서 이벤트 객체 전달 받기 -->
+    <p id="p3">마우 오버</p>
+    <button onclick="f(event)">클릭</button>
+
+    <p id="p4">객체를 출력합니다.</p>
+    <script>
+        function f(e) {
+            console.log(e.type); // 이벤트 종류 출력
+            console.log(e.target);
+            console.log(e.currentTarget);
+            console.log(e.defaultPrevented); 
+
+            let text = "type:" + e.type + "<br>"
+            + "target:" + e.target;
+
+            let p4 = document.getElementById("p4");
+            p4.innerHTML = text;
+        }
+
+        document.getElementById('p3').onmouseover = f;
+    </script>
+
+</body>
+</html>
