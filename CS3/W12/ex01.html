@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function change(obj, size, color) {
+            obj.style.color = color;
+            obj.style.fontSize = size;
+            // console.log("이거 잘 되냐?");
+        }
+
+        // DOM 객체 찾기 : 태그로 객체 찾아오기
+        function change2() {
+            let spanArray = document.getElementsByTagName("span");
+            for(let i=0; i<spanArray.length;i++) {
+                let span = spanArray[i];
+                span.style.color = "orchid";
+                span.style.fontSize = "20px";
+            }
+
+            // spanArray.forEach(element => {
+            //     element.style.color = "orchid";
+            //     element.style.fontSize = "20px";
+            // });
+        }
+
+        // 동적으로 객체를 추가하고 삭제하는 방법
+        function createDIV() {
+            let obj = document.getElementById("parent");
+            let newDIV = document.createElement('div');
+
+            newDIV.innerHTML = "새로 생성된 DIV입니다.";
+            newDIV.setAttribute("id", 'myDiv');
+            newDIV.style.backgroundColor = "yellow";
+            newDIV.onclick = function() {
+                let p = this.parentElement;
+                p.removeChild(this);
+            };
+
+            obj.appendChild(newDIV);
+        }
+    </script>
+</head>
+<!-- <body style="background-image: url(./m.jpg);"> -->
+<body>
+    <!-- this 활용! -->
+    <button onclick="change(this, '30px', 'red')">버튼</button>
+    <button onclick="change(this, '30px', 'blue')">버튼</button>
+    <div onclick="change(this, '25px', 'orange')">여기를 클릭하면 크기와 색을 변경합니다.</div>
+    
+    <hr>
+
+    대한민국은 <span>국제평화</span>의 유지에 노력하고 침략적 전쟁을 부인한다. 
+    선거에 관한 경비는 <span>법률</span>이 정하는 경우를 제외하고는 정당 또는 
+    <span>후보자</span>에게 부담시킬 수 없다.
+    
+    국민의 모든 자유와 권리는 <span>국가안전보장·질서유지</span> 또는 공공복리를 
+    위하여 필요한 경우에 한하여 법률로써 제한할 수 있으며, 
+    제한하는 경우에도 <span>자유와 권리</span>의 본질적인 내용을 침해할 수 없다.
+
+    <button onclick="change2()">누르세요.</button>
+    
+    <!-- <p onclick="document.write('<h3>클릭되었습니다.</h3>')">write()를 잘 못 쓰는 경우</p> -->
+
+    <div id="parent">
+        <h3>DIV 객체를 동적으로 생성, 삽입, 삭제하는 예제</h3>
+        <hr>
+        <p>
+            <p>DOM 트리에 동적으로 객체를 삽입할 수 있습니다.
+            <a href="javascript:createDIV()">DIV 생성</a></p>
+        </p>
+    </div>
+
+</body>
+</html>
