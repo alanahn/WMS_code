@@ -42,6 +42,5 @@ class Students{
 class text {
     public static void main(String[] args) {
         Students s1 = new Students(null, 0, null, null);
-        s1.
     }
 }

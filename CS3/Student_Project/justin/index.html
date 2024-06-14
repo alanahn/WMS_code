@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBC뉴스데스크</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #0054a5;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: invert(1);
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .auth-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-links a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-item {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .news-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .news-item h3 {
+            font-size: 20px;
+            color: #0054a5;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-container button {
+            background-color: #0054a5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #003366;
+        }
+
+        .advertisement {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .advertisement img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNtgn_eELryncTYDSr22ATWvHkr_6dRcv7ihdIYED__A&s" alt="mbc뉴스데스크">
+            <h1>세계 모든 것을 알려드립니다.</h1>
+        </div>
+        <div class="auth-links">
+            <a href="#">회원가입</a>
+            <a href="#">로그인</a>
+        </div>
+    </header>
+
+    <div class="advertisement">
+        <img src="스크린샷 2024-05-24 오전 1.51.37.png" alt="광고 이미지">
+    </div>
+
+    <div class="button-container">
+        <button id="economy-btn">경제</button>
+        <button id="current-affairs-btn">eSports</button>
+        <button id="environment-btn">환경</button>
+        <button id="finance-btn">금융</button>
+    </div>
+
+    <div class="container" id="news-container">
+        <!-- News items will be dynamically added here -->
+    </div>
+
+    <script>
+        // News data for each category
+        const newsData = {
+            economy: {
+                image: "https://i.namu.wiki/i/xAzQhZsYG5lpmWUR1jG-7gXgJ6W9c7EaYZZErRE4dbKhQOG4m4M-AMM5KOHrO48kw9979UnEzHMKF0xVmuYMAQ.webp",
+                headline: "테슬라 사이버트럭 결함으로 인한 생산 중단. 테슬라 주식상황..."
+            },
+            currentAffairs: {
+                image: "https://cdn.shopify.com/s/files/1/0554/8412/1271/files/geng.jpg?v=1625519891",
+                headline: "Gen.G masters madrid에서 2위. 한국팀 첫 세계대회 극적 준우승..."
+            },
+            environment: {
+                image: "https://i.namu.wiki/i/PGXHxj_--Wrv3uyevWYHuuZnOaC4Dnvuf0y3mEB_0D49zyTFIu2XlGG8m4HJVq1DBOFr-E4TS0o6Be3CQQb47g.webp",
+                headline: "카트라이더:드리프트 경영과 운영 실패로 적자 누적 200억..."
+            },
+            finance: {
+                image: "https://img.sbs.co.kr/newimg/news/20160711/200959056_500.jpg",
+                headline: "결국 찢기고 버려진 돈의 죽음…지폐의 마지막 모습은?"
+            }
+        };
+
+        // Function to display news for a specific category
+        function displayNews(category) {
+            const newsContainer = document.getElementById("news-container");
+            newsContainer.innerHTML = ""; // Clear previous news items
+
+            const newsItem = document.createElement("div");
+            newsItem.classList.add("news-item");
+
+            const image = document.createElement("img");
+            image.src = newsData[category].image;
+            image.alt = category.charAt(0).toUpperCase() + category.slice(1); // Capitalize first letter
+            newsItem.appendChild(image);
+
+            const headline = document.createElement("h3");
+            headline.innerHTML = `<ins>${newsData[category].headline}</ins>`;
+            newsItem.appendChild(headline);
+
+            newsContainer.appendChild(newsItem);
+        }
+
+        // Event listeners for category buttons
+        document.getElementById("economy-btn").addEventListener("click", () => {
+            displayNews("economy");
+        });
+
+        document.getElementById("current-affairs-btn").addEventListener("click", () => {
+            displayNews("currentAffairs");
+        });
+
+        document.getElementById("environment-btn").addEventListener("click", () => {
+            displayNews("environment");
+        });
+
+        document.getElementById("finance-btn").addEventListener("click", () => {
+            displayNews("finance");
+        });
+
+        // Display initial news (economy) on page load
+        displayNews("economy");
+    </script>
+</body>
+
+</html>
