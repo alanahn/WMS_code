@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(window.innerWidth);
+        console.log(window.innerHeight);
+
+        // // 새 창 열기
+        // const newWindow = window.open('https://www.example.com', '_blank');
+
+        // // 3초 후에 경고 대화 상자 표시
+        // window.setTimeout(() => {
+        //     window.alert('3초가 지났습니다!');
+        // }, 3000);
+        
+        console.log(navigator.userAgent);
+        console.log(navigator.language);
+        console.log(navigator.platform);
+        
+        let newWin=null;
+
+        function load(URL) {
+            newWin = window.open(URL, "myWin", "left=300,top=300,width=400,height=300")
+        }
+        
+        function closeNewWindow() {
+            if(newWin==null || newWin.closed) 
+                return;
+            else
+                newWin.close();
+        }
+    </script>
+
+    <a href="javascript:load('https://waymakerschool.org')">
+        웨이메이커스쿨 홈페이지 접속하기
+    </a>
+    <br>
+    <a href="javascript:closeNewWindow()">
+        새 윈도우 닫기
+    </a>
+    <br>
+    <a href="javascript:window.close()">
+        현재 윈도우 닫기
+    </a>
+
+    <h1> 마우스 올리고 있으면 5초 뒤에 사이트 이동합니다.</h1>
+</body>
+</html>

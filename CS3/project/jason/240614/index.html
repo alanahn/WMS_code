@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>설문조사 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="email"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .radio-group, .checkbox-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .checkbox-group label, .radio-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        #clock {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // EmailJS 초기화
+        (function(){
+            emailjs.init("YOUR_USER_ID");  // 여기에 EmailJS 사용자 ID를 입력하세요
+        })();
+
+        function validateForm() {
+            const form = document.getElementById('surveyForm');
+            const submitButton = document.getElementById('submit');
+            const inputs = form.querySelectorAll('input[type="text"], input[type="radio"], input[type="checkbox"], select, input[type="email"]');
+            let allFilled = true;
+            let radioChecked = false;
+
+            inputs.forEach(input => {
+                if (input.type === 'radio') {
+                    if (input.checked) {
+                        radioChecked = true;
+                    }
+                } else if (input.type !== 'checkbox' && input.value === '') {
+                    allFilled = false;
+                }
+            });
+
+            if (allFilled && radioChecked) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+            const form = document.getElementById('surveyForm');
+            const formData = new FormData(form);
+            const now = new Date();
+            const completionTime = `${now.getHours()}시 ${now.getMinutes()}분`;
+
+            let interests = '';
+            if (formData.get('lang')) interests += '독토, ';
+            if (formData.get('math')) interests += '수탐, ';
+            if (formData.get('science')) interests += '과탐, ';
+            if (formData.get('esl')) interests += '세시살, ';
+            if (formData.get('making')) interests += '매이킹, ';
+            interests = interests.slice(0, -2);  // 마지막 쉼표와 공백 제거
+
+            const emailParams = {
+                to_name: 'Admin',
+                from_name: formData.get('fname'),
+                fname: formData.get('fname'),
+                select_gender: formData.get('select_gender'),
+                interests: interests,
+                Subject: formData.get('Subject'),
+                email: formData.get('email'),
+                completionTime: completionTime,
+                message: `
+                    이름: ${formData.get('fname')}
+                    성별: ${formData.get('select_gender')}
+                    관심있는 과목: ${interests}
+                    선호하는 과목: ${formData.get('Subject')}
+                    이메일: ${formData.get('email')}
+                    설문 완료 시간: ${completionTime}
+                `
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams)
+                .then((response) => {
+                    alert('제출되었습니다! 감사합니다.');
+                    window.location.href = 'next_page.html'; // 성공 시 리디렉션
+                }, (error) => {
+                    alert('이메일 전송 중 오류가 발생했습니다.');
+                    console.log('FAILED...', error);
+                });
+        }
+
+        function startClock() {
+            const clock = document.getElementById('clock');
+            setInterval(() => {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                clock.textContent = `${hours}:${minutes}:${seconds}`;
+            }, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('surveyForm');
+            const inputs = form.querySelectorAll('input, select');
+
+            inputs.forEach(input => {
+                input.addEventListener('change', validateForm);
+                input.addEventListener('input', validateForm);
+            });
+
+            form.addEventListener('submit', sendEmail);
+            startClock();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>설문조사 페이지 만들기.JSON</h1>
+        <div id="clock"></div>
+        <form id="surveyForm">
+            <label for="fname">이름:</label>
+            <input type="text" id="fname" name="fname">
+            
+            <div class="radio-group">
+                <p>성별을 선택하세요</p>
+                <input type="radio" id="male" name="select_gender" value="Male">
+                <label for="male">남자</label>
+                <input type="radio" id="female" name="select_gender" value="Female">
+                <label for="female">여자</label>
+            </div>
+
+            <div class="checkbox-group">
+                <p>관심있는 과목을 선택하세요</p>
+                <input type="checkbox" id="lang" name="lang" value="Lang">
+                <label for="lang"> 독토</label>
+                <input type="checkbox" id="math" name="math" value="Math">
+                <label for="math"> 수탐</label>
+                <input type="checkbox" id="science" name="science" value="Science">
+                <label for="science"> 과탐</label>
+                <input type="checkbox" id="esl" name="esl" value="ESL">
+                <label for="esl"> 세시살</label>
+                <input type="checkbox" id="making" name="making" value="Making">
+                <label for="making"> 매이킹</label>
+            </div>
+
+            <label for="Subject">가장 선호하는 과목을 선택하세요</label>
+            <select id="Subject" name="Subject">
+                <option value="Lang">독토</option>
+                <option value="Math">수탐</option>
+                <option value="Science">과탐</option>
+                <option value="ESL">세시살</option>
+                <option value="Making">세시살</option>
+            </select>
+
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email">
+
+            <input type="submit" id="submit" value="Submit" disabled>
+        </form>
+    </div>
+</body>
+</html>
