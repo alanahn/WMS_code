@@ -7,6 +7,52 @@
 </head>
 <body>
     <h1>이미지 위에 마우스를 올리고 있으면 5초 뒤에 사이트 이동</h1>
-    <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUMrE2Uxgi_qqCwbuqONW_NzEz72ZeOArwFQ&s">
+    <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUMrE2Uxgi_qqCwbuqONW_NzEz72ZeOArwFQ&s"
+    onmouseover="startTimer(5000)" onmouseout="cancelTimer()">
+
+    <script>
+        let timerId=null;
+
+        function startTimer(timeout) {
+            //타이머 시작
+            timerId = setTimeout(() => {
+                // window.location = 'https://waymakerschool.org';
+                window.open("https://waymakerschool.org");
+            }, timeout);
+
+            document.getElementById("img").title = "타이머 작동 시작...";
+            console.log("타이머 시작");
+        }
+
+        function cancelTimer() {
+            if(timerId != null) {
+                clearTimeout(timerId); // 타이머 중단
+                console.log("타이머 중단");
+            }
+        }
+    </script>
+
+    <h1>텍스트가 자동 회전하며 마우스로 클릭하면 중단</h1>
+    <div><span id="span" style="background-color: yellow;">
+    자동 회전하는 텍스트입니다.</span>
+    </div>
+
+    <script>
+        let span = document.getElementById("span");
+        let timeInterval = 200;
+        let timerId2 = setInterval("doRotate()", timeInterval);
+
+        function doRotate() {
+            let str = span.innerHTML;
+            let firstChar = str.substr(0, 1);
+            let remains = str.substr(1, str.length-1);
+            str = remains + firstChar;
+            span.innerHTML = str;
+        }
+
+        span.onclick = function(e) {
+            clearInterval(timerId2);
+        }
+    </script>
 </body>
 </html>

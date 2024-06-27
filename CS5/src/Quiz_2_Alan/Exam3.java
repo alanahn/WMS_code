@@ -32,10 +32,35 @@ package Quiz_2_Alan;
  *       과목:자바심화
  */
 
+class Student {
+    private String name;
+    private int age;
+    private String subject;
 
+    public Student(String name, int age, String subject) {
+        this.name = name;
+        this.age = age;
+        this.subject = subject;
+    }
 
+    @Override
+    public String toString() {
+        return "이름: " + name + "\n나이: " + age + "\n과목: " + subject;
+    }
+}
 
 public class Exam3 {
+    public static void main(String[] args) {
+        Student[] students = new Student[3];
 
+        students[0] = new Student("1", 2, "2");
+        students[1] = new Student("2", 332, "3332");
+        students[2] = new Student("12222", 22222, "22222");
+
+        System.out.println("-------");
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+    }
 }
 
