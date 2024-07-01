@@ -28,14 +28,14 @@ class Car {
     }
     
     public String getModel() {
-        return this.modelYear + "년식" + this.color+ " " + this.modelName;
+        return this.modelYear + " 년식" + this.color+ " " + this.modelName;
     }
 }
 
 public class Exam1 {
-public static void main(String[] args) {
-    Car myCar = new Car("소나타", 2022, "흰색");
-    System.out.println(myCar.getModel());
-}
+    public static void main(String[] args) {
+        Car myCar = new Car("소나타", 2022, "흰색");
+        System.out.println(myCar.getModel());
+    }
 }
 

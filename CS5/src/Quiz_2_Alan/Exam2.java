@@ -1,6 +1,5 @@
 package Quiz_2_Alan;
 
-
 /**
  * 문제2. 밑변과 높이 정보를 저장할 수 있는 Rectangle 클래스를 정의합니다.
  *        그리고 생성자로 초기화합니다. 끝으로 밑변과 높이의 정보를 변경시킬 수 있는 메소드와
@@ -18,8 +17,36 @@ package Quiz_2_Alan;
  *        사각형의 넓이: 203.0
  */
 
+class Rectangle {
+    private double bottom;
+    private double height;
+
+    Rectangle(double bottom, double height) {
+        this.bottom = bottom;
+        this.height = height;
+    }
+
+    public void setBottom(double bottom) {
+        this.bottom = bottom;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getArea() {
+        return bottom * height;
+    }
+}
 
 public class Exam2 {
+    public static void main(String[] args) {
+        Rectangle rectangle = new Rectangle(30.0, 10.2);
+        System.out.println("사각형의 넓이: " + rectangle.getArea());
 
+        rectangle.setBottom(10);
+        rectangle.setHeight(20.3);
+        System.out.println("사각형의 넓이: " + rectangle.getArea());
+    }
 }
 
