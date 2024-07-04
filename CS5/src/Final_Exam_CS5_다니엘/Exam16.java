@@ -16,26 +16,6 @@ package FinalExam;
  *        이름: 홍길동, 나이: 20, 학번: 2021001
  */
 
-class Student {
-    private String name;
-    private int age;
-    private int studentId;
-
-    public Student(String name, int age, int studentId) {
-        this.name = name;
-        this.age = age;
-        this.studentId = studentId;
-    }
-
-    void printStudent() {
-        System.out.println("이름: " + name + ", 나이: " + age + ", 학번: " + studentId);
-    }
-}
-
 public class Exam16 {
-    public static void main(String[] args) {
-        Student std = new Student("홍길동", 20, 2021001);
 
-        std.printStudent();
-    }
 }

@@ -1,4 +1,4 @@
-package FinalExam;
+package FinalExam_TestVersion;
 
 import java.util.Scanner;
 
@@ -14,16 +14,4 @@ import java.util.Scanner;
  */
 
 public class Exam15 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("--입력--");
-        int number = scanner.nextInt();
-
-        System.out.println("--출력--");
-        String result = (number > 0) ? "양수입니다." : (number < 0) ? "음수입니다." : "0입니다.";
-        System.out.println(result);
-
-        scanner.close();
-    }
 }
