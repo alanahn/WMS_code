@@ -1,7 +1,7 @@
 package FinalExam;
 
 /**
- * 문제30. 간단한 게임 캐릭터 클래스를 활용하여 게임의 진행을 시뮬레이션하는 프로그램을 작성하세요.
+ * [20점]문제30. 간단한 게임 캐릭터 클래스를 활용하여 게임의 진행을 시뮬레이션하는 프로그램을 작성하세요.
  * 
  * 게임 캐릭터는 이름과 레벨을 가지며, 공격력과 방어력을 포함한 추가 정보를 출력할 수 있어야 합니다.
  * 
@@ -22,6 +22,8 @@ package FinalExam;
  * 
  * [메소드]
  * - 생성자: name과 level을 받아 초기화, attackPower와 defensePower는 level에 따라 설정
+ * - attackPower은 레벨업 때 마다 level * 10으로 증가
+ * - defensePower는 레벨업 때 마다 level * 5로 증가
  * - printInfo(): 캐릭터 정보 출력 (이름, 레벨, 공격력, 방어력)
  * - levelUp(): 레벨을 1 증가시키고, attackPower와 defensePower를 업데이트하여 출력
  * 
@@ -47,11 +49,9 @@ package FinalExam;
 public class Exam30 {
     public static void main(String[] args) {
         // 캐릭터 생성
-        GameCharacter character = new GameCharacter("아서", 1);
 
-        // 초기 정보 출력
         System.out.println("캐릭터 생성 및 초기 정보 출력");
-        character.printInfo();
+        // 초기 정보 출력
         System.out.println("-------");
 
         // 몬스터와의 전투 시작
@@ -61,7 +61,7 @@ public class Exam30 {
         boolean win = true; // 전투에서 승리했다고 가정
         if (win) {
             System.out.println("전투에서 승리하였습니다!");
-            character.levelUp();
+            // 레벨업 메서드 실행
             System.out.println("-------");
         } else {
             System.out.println("전투에서 패배하였습니다.");
@@ -73,40 +73,22 @@ public class Exam30 {
 }
 
 class GameCharacter {
-    private String name;
-    private int level;
-    private int attackPower;
-    private int defensePower;
+    // 필드
 
-    public GameCharacter(String name, int level) {
-        this.name = name;
-        this.level = level;
-        this.attackPower = calculateAttackPower(level);
-        this.defensePower = calculateDefensePower(level);
-    }
 
-    private int calculateAttackPower(int level) {
-        return level * 10;
-    }
+    // 생성자
+    
 
-    private int calculateDefensePower(int level) {
-        return level * 5;
-    }
+    // calculateAttackPower 메소드
 
-    public void printInfo() {
-        System.out.println("이름: " + name);
-        System.out.println("레벨: " + level);
-        System.out.println("공격력: " + attackPower);
-        System.out.println("방어력: " + defensePower);
-    }
 
-    public void levelUp() {
-        level++;
-        attackPower = calculateAttackPower(level);
-        defensePower = calculateDefensePower(level);
+    // calculateAttackPower 메소드
 
-        System.out.println("경험치를 획득하여 레벨이 " + level + "가 되었습니다!");
-        System.out.println("새로운 공격력: " + attackPower);
-        System.out.println("새로운 방어력: " + defensePower);
-    }
+
+    // printInfo 메소드
+
+
+    // levelUp 메소드
+    
+
 }
