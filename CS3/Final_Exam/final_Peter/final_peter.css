@@ -1,0 +1,84 @@
+/* 기본 스타일 초기화 */
+body, h1, h2, h3, h4, p, label, form, input, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #4CAF50;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"],
+button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #45a049;
+}
+
+.image-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.submitted {
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.submitted:hover {
+    color: rgba(0, 0, 0, 1);
+    pointer-events: auto;
+}

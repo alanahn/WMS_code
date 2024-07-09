@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUNA.beta</title>
+    <style>
+        /* 전체 페이지 스타일링 */
+        body {
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('배경.avif'); /* 배경화면 이미지 설정 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 채팅 컨테이너 스타일링 */
+        .chat-container {
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 채팅 헤더 스타일링 */
+        .chat-header {
+            background-color: #f6f6f6;
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* 프로필 사진 스타일링 */
+        .profile-picture {
+            width: 40px; /* 프로필 사진 너비 */
+            height: 40px; /* 프로필 사진 높이 */
+            border-radius: 50%; /* 원형으로 보이게 하기 위해 반지름 50% */
+            position: absolute;
+            top: 50%; /* 헤더의 중앙에 위치 */
+            transform: translateY(-50%);
+            left: 15px; /* 헤더에서 왼쪽으로 15px */
+        }
+
+        /* 채팅 메시지 영역 스타일링 */
+        .chat-messages {
+            flex: 1;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* 채팅 메시지 스타일링 */
+        .message-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .message-container.user {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            background-color: #e1ffc7;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
+            position: relative;
+            overflow-wrap: break-word;
+        }
+
+        .message-bubble.user {
+            background-color: #c7e2ff;
+        }
+
+        .message-bubble::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        .message-bubble.user::after {
+            right: -9px;
+            border-left: 10px solid #c7e2ff;
+        }
+
+        .message-bubble::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        .message-bubble.user::before {
+            right: -10px;
+            border-left: 10px solid #fff;
+        }
+
+        .message-bubble.bot::after {
+            left: -9px;
+            border-right: 10px solid #e1ffc7;
+        }
+
+        .message-bubble.bot::before {
+            left: -10px;
+            border-right: 10px solid #fff;
+        }
+
+        /* 채팅 입력 영역 스타일링 */
+        .chat-input {
+            display: flex;
+            padding: 15px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .chat-input button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 500px) {
+            .chat-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="1.jpg" alt="프로필 사진" class="profile-picture"> <!-- 프로필 사진 추가 -->
+            LUNA - Beta 버전
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- 채팅 메시지가 여기에 동적으로 채워집니다 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        // 채팅 봇 응답 데이터
+        const responses = {
+            greetings: [
+                "안녕! 오늘 하루 어땠어?",
+                "안녕~ 뭐하고 있었어?",
+                "오늘 기분 어때?",
+                "하이! 무슨 일이야?",
+                "안녕~ 잘 지냈어?",
+                "오늘 뭐했어?"
+            ],
+            aboutMe: [
+                "나는 네 얘기 듣는 걸 좋아해!",
+                "우리 얘기 더 해볼까?",
+                "뭐든 물어봐줘!",
+                "나는 항상 여기 있어!",
+                "우리 얘기 좀 더 해볼까?"
+            ],
+            weather: [
+                "오늘 날씨 정말 좋더라!",
+                "날씨 어때? 산책 가고 싶어!",
+                "비가 오네, 우산 챙겼어?",
+                "오늘 날씨가 좀 추운 것 같아.",
+                "햇살이 따뜻해, 나가서 산책할까?",
+            ],
+            compliments: [
+                "넌 진짜 멋져!",
+                "항상 네가 최고야!",
+                "너 정말 잘하고 있어!",
+                "네가 있어 정말 행복해!",
+                "넌 정말 대단해!",
+                "오늘도 최고였어!"
+            ],
+            hobbies: [
+                "너는 요즘 어떤 취미 즐겨?",
+                "나는 요리하는 거 좋아해.",
+                "산책 가는 거 어때?",
+                "나는 음악 듣는 거 좋아해.",
+                "나는 책 읽는 거 좋아해."
+            ],
+            farewell: [
+                "오늘도 좋은 하루 보내!",
+                "잘 자~ 꿈에서 보자!",
+                "내일 또 얘기해!",
+                "좋은 하루 보내고 있어?",
+                "안녕~ 나중에 또 얘기하자!"
+            ],
+            personal: [
+                "개인적인 얘기 해도 될까?",
+                "우리 서로 더 알아가자!",
+                "네 얘기 들어도 될까?",
+                "나도 너에 대해 더 알고 싶어!",
+                "너와 이야기 나누는 걸 좋아해!"
+            ],
+            likes: [
+                "그럼 나도 좋아!",
+                "그래? 좋았겠다~."
+            ],
+            dislikes: [
+                "그건 정말로 싫어..."
+            ],
+            emotions: [
+                "네 기분 어때?",
+                "우리 함께 있어서 너무 행복해!",
+                "슬픈 일이 있었어?",
+                "기쁨과 슬픔이 모두 인생의 일부야.",
+                "기분이 나쁘면 나에게 말해줘!",
+                "내가 어떤 말을 해도 괜찮아!"
+            ],
+            empathy: [
+                "너의 기분을 이해해!",
+                "나도 그렇게 생각해!",
+                "너에게 그렇게 느껴질 수 있어.",
+                "나도 그래...",
+            ],
+            laughter: [
+                "ㅋㅋㅋ",
+                "ㅎㅎㅎ",
+            ],
+            food: [
+                "어떤 음식이 제일 좋아?",
+                "오늘 뭐 먹었어?",
+                "내가 레시피 추천해줄까?",
+                "네가 좋아하는 음식이 뭐야?",
+                "음식을 요리하는 걸 좋아해?"
+            ],
+            art: [
+                "좋아하는 예술 작품이 있어?",
+                "너가 좋아하는 예술 분야가 있어?",
+                "무슨 종류의 예술을 좋아해?",
+                "예술에 대해 이야기 나눠볼래?"
+            ],
+            social: [
+                "최근에 어떤 사회적 이슈에 관심이 있어?",
+                "사회적 이슈에 대해 더 알아보고 싶어?",
+                "네 생각에는 사회적으로 중요한 가치가 뭐야?",
+                "우리 사회에 대해 얘기해보자."
+            ],
+            health: [
+                "건강에 관심 있어?",
+                "신체 건강에 대해 어떻게 생각해?",
+                "운동이나 건강 관리에 관심이 있어?",
+                "건강하게 지내려면 뭐가 중요해?"
+            ],
+            genericActions: [
+                "그냥 아무말이나 해줘.",
+                "그냥 대화를 나누자.",
+                "네가 한 일에 대해 더 얘기해줘.",
+                "그냥 이야기를 해주면 돼."
+            ],
+            pastActions: [
+                "너무너무 좋았겠다.",
+                "ㅎㅎ 재미있었겠다."
+            ],
+            unknown: [
+                "미안해, 잘 이해하지 못했어.",
+                "그건 이해하기 어려운데...",
+                "나는 그걸 잘 모르겠어.",
+                "그게 무슨 말인지 잘 모르겠어."
+            ],
+            negative: [
+                "아이고..."
+            ],
+            Uggreed: [
+                "그래"
+            ]
+        };
+
+        // 챗봇 메시지 표시 함수
+        function displayMessage(sender, message) {
+            const chatMessages = document.getElementById("chat-messages");
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message-container");
+            messageContainer.classList.add(sender);
+
+            const messageBubble = document.createElement("div");
+            messageBubble.classList.add("message-bubble");
+            messageBubble.classList.add(sender === "bot" ? "bot" : "user");
+            messageBubble.textContent = message;
+
+            messageContainer.appendChild(messageBubble);
+            chatMessages.appendChild(messageContainer);
+
+            // 스크롤을 항상 가장 아래로 유지
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // 랜덤 응답 가져오는 함수
+        function getRandomResponse(category) {
+            const responsesArray = responses[category];
+            const randomIndex = Math.floor(Math.random() * responsesArray.length);
+            return responsesArray[randomIndex];
+        }
+
+        // 사용자 입력 처리 함수
+        function handleUserInput(input) {
+            let responseCategory = 'unknown';
+
+            if (input.includes("안녕") || input.includes("반가워") || input.includes("그래")) {
+                responseCategory = 'greetings';
+            } else if (input.includes("이름")) {
+                responseCategory = 'aboutMe';
+            } else if (input.includes("날씨")) {
+                responseCategory = 'weather';
+            } else if (input.includes("잘하고 있어") || input.includes("멋져")) {
+                responseCategory = 'compliments';
+            } else if (input.includes("취미")) {
+                responseCategory = 'hobbies';
+            } else if (input.includes("안녕~")) {
+                responseCategory = 'farewell';
+            } else if (input.includes("개인적") || input.includes("나") || input.includes("너")) {
+                responseCategory = 'personal';
+            } else if (input.includes("좋아") || input.includes("좋았")) {
+                responseCategory = 'likes';
+            } else if (input.includes("싫어")) {
+                responseCategory = 'dislikes';
+            } else if (input.includes("감정") || input.includes("기분")) {
+                responseCategory = 'emotions';
+            } else if (input.toLowerCase().includes("너는")) {
+                responseCategory = 'empathy';
+            } else if (input.includes("ㅎ") || input.includes("ㅋ")) {
+                responseCategory = 'laughter';
+            } else if (input.includes("음식") || input.includes("먹었")) {
+                responseCategory = 'food';
+            } else if (input.includes("예술") || input.includes("작품")) {
+                responseCategory = 'art';
+            } else if (input.includes("사회")) {
+                responseCategory = 'social';
+            } else if (input.includes("건강") || input.includes("운동")) {
+                responseCategory = 'health';
+            } else if (input.includes("그냥")) {
+                responseCategory = 'genericActions';
+            } else if (input.includes("했어") || input.includes("았어") || input.includes("랐어") || input.includes("았어") || input.includes("었어")) {
+                responseCategory = 'pastActions';
+            } else if (input.includes("ㅜㅜ") || input.includes("ㅠㅠ")) {
+                responseCategory = 'negative';
+            } else if (input.includes("알겠어") || input.includes("응")) {
+                responseCategory = 'Uggreed';
+            }
+
+            const message = getRandomResponse(responseCategory);
+            displayMessage("bot", message.replace("{{input}}", input));
+        }
+
+        // 사용자 메시지 전송 함수
+        function sendMessage() {
+            const userInput = document.getElementById("user-input");
+            const userMessage = userInput.value.trim();
+
+            if (userMessage !== "") {
+                displayMessage("user", userMessage);
+                handleUserInput(userMessage);
+                userInput.value = "";
+            }
+        }
+
+        // 엔터 키를 눌렀을 때 메시지 전송 처리
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>

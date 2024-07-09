@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기말고사-peter</title>
+    <link rel="stylesheet" href="final_peter.css">
+    <style>
+        .image-section img {
+            width: 100px; /* 원하는 이미지 크기 */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>WMS 과목들에 대한 설문조사</h1>
+    </header>
+    <div class="container">
+        <h3>to.everyone</h3>
+        <hr>
+
+        <!-- 로그인 폼 -->
+        <form id="loginForm" onsubmit="return login()">
+            <label for="username"><h3>로그인</h3>
+                사용자 이름:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="로그인">
+        </form>
+
+        <!-- 회원가입 링크 -->
+        <p><a href="signup.html" target="_blank">회원가입</a></p>
+
+        <hr>
+
+        <!-- 개인 정보 폼 -->
+        <form name="personalInfoForm">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name">
+
+            <p>- 한 가지 성별만 선택해 주세요 -</p>
+            <label><input type="radio" name="gender" value="men"> 남성</label>
+            <label><input type="radio" name="gender" value="women"> 여성</label>
+            <label><input type="radio" name="gender" value="notmenorwomen"> 성별 선택 안함</label>
+
+            <input type="reset" value="Reset">
+        </form>
+
+        <hr>
+
+        <!-- 선호 과목 폼 -->
+        <form name="preferencesForm">
+            <h4>한 가지만 선택해주세요.</h4>
+    
+            <h2>수학</h2>
+            <section class="image-section">
+                <p>수학 관련 이미지:</p>
+                <img src="https://yt3.googleusercontent.com/ytc/AIdro_l27x1Z646ciKkMePSvsTd5viItRW666FRIvKFXHterRrA=s900-c-k-c0x00ffffff-no-rj" alt="수학 플러스 러닝">
+            </section>
+            <label><input type="radio" name="mathPreference" value="like" onclick="toggleOtherInput('mathOther', false)"> 수학을 정말 좋아합니다.</label>
+            <label><input type="radio" name="mathPreference" value="dislike" onclick="toggleOtherInput('mathOther', false)"> 수학이 너무나 싫습니다.</label>
+            <label><input type="radio" name="mathPreference" value="other" onclick="toggleOtherInput('mathOther', true)"> 기타:</label>
+            <input type="text" id="mathOther" name="mathOther" placeholder="직접 입력" disabled onblur="checkAndSubmit(this)">
+
+            <h2>영어</h2>
+            <section class="image-section">
+                <p>영어 관련 이미지:</p>
+                <img src="https://play-lh.googleusercontent.com/howCUVHqn67CQ_1VuMAICY7FIwUGT-4c6_Tcii_9z0dE1_2ZN2vA8Ny1EMkJVYMGBQUw" alt="수학 플러스 러닝">
+            </section>
+            <label><input type="radio" name="englishPreference" value="like" onclick="toggleOtherInput('englishOther', false)"> 영어가 제일 좋습니다.</label>
+            <label><input type="radio" name="englishPreference" value="struggle" onclick="toggleOtherInput('englishOther', false)"> 영어가 너무나 하기 싫습니다.</label>
+            <label><input type="radio" name="englishPreference" value="other" onclick="toggleOtherInput('englishOther', true)"> 기타:</label>
+            <input type="text" id="englishOther" name="englishOther" placeholder="직접 입력" disabled onblur="checkAndSubmit(this)">
+
+            <h2>메이킹</h2>
+            <label><input type="radio" name="apdlzldPreference" value="like" onclick="toggleOtherInput('apdlzldOther', false)"> 메이킹을 하고 싶어합니다.</label>
+            <label><input type="radio" name="apdlzldPreference" value="dislike" onclick="toggleOtherInput('apdlzldOther', false)"> 메이킹을 하기 싫어합니다.</label>
+            <label><input type="radio" name="apdlzldPreference" value="other" onclick="toggleOtherInput('apdlzldOther', true)"> 기타:</label>
+            <input type="text" id="apdlzldOther" name="apdlzldOther" placeholder="직접 입력" disabled onblur="checkAndSubmit(this)">
+
+            <h2>CSS</h2>
+            <label><input type="radio" name="cssPreference" value="like" onclick="toggleOtherInput('cssOther', false)"> CSS를 좋아합니다.</label>
+            <label><input type="radio" name="cssPreference" value="dislike" onclick="toggleOtherInput('cssOther', false)"> CSS를 싫어합니다.</label>
+            <label><input type="radio" name="cssPreference" value="other" onclick="toggleOtherInput('cssOther', true)"> 기타:</label>
+            <input type="text" id="cssOther" name="cssOther" placeholder="직접 입력" disabled onblur="checkAndSubmit(this)">
+
+            <h2>project</h2>
+            <label><input type="radio" name="projectPreference" value="like" onclick="toggleOtherInput('projectOther', false)"> 프로젝트를 좋아합니다.</label>
+            <label><input type="radio" name="projectPreference" value="dislike" onclick="toggleOtherInput('projectOther', false)"> 프로젝트를 싫어합니다.</label>
+            <label><input type="radio" name="projectPreference" value="other" onclick="toggleOtherInput('projectOther', true)"> 기타:</label>
+            <input type="text" id="projectOther" name="projectOther" placeholder="직접 입력" disabled onblur="checkAndSubmit(this)">
+
+            <input type="reset" value="Reset" onclick="resetForm()">
+        </form>
+
+        <hr>
+
+        <!-- 이미지 섹션 -->
+        
+
+    </div>
+
+    <!-- 외부 JavaScript 파일 포함 -->
+    <script src="final_peter.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학교 설문조사</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("luxihtml@gmail.com"); // EmailJS 사용자 ID로 초기화
+        })();
+    </script>
+</head>
+<body>
+    <div id="welcome-message" class="welcome-message">
+        <h1 id="welcome-text"></h1>
+    </div>
+    <div id="survey-container" class="hidden">
+        <header>
+            <h1>학교 설문조사</h1>
+        </header>
+        <main>
+            <section class="survey-section">
+                <h2>설문조사 양식</h2>
+                <form id="survey-form">
+                    <div class="form-group">
+                        <label for="name">이름:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="satisfaction-classes">수업 만족도:</label>
+                        <input type="range" id="satisfaction-classes" name="satisfaction_classes" min="1" max="10" required>
+                        <span id="satisfactionClassesValue">5</span>/10
+                    </div>
+                    <div class="form-group">
+                        <label for="satisfaction-facilities">시설 만족도:</label>
+                        <input type="range" id="satisfaction-facilities" name="satisfaction_facilities" min="1" max="10" required>
+                        <span id="satisfactionFacilitiesValue">5</span>/10
+                    </div>
+                    <div class="form-group">
+                        <label for="satisfaction-teachers">교사 만족도:</label>
+                        <input type="range" id="satisfaction-teachers" name="satisfaction_teachers" min="1" max="10" required>
+                        <span id="satisfactionTeachersValue">5</span>/10
+                    </div>
+                    <div class="form-group">
+                        <label for="satisfaction-environment">환경 만족도:</label>
+                        <input type="range" id="satisfaction-environment" name="satisfaction_environment" min="1" max="10" required>
+                        <span id="satisfactionEnvironmentValue">5</span>/10
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback">추가 의견:</label>
+                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                    </div>
+                    <button type="submit">제출</button>
+                </form>
+            </section>
+            <section class="gallery-section">
+                <h2>이미지 갤러리</h2>
+                <div class="gallery">
+                    <img src="images/image1.png" alt="학교 대표 로고" class="gallery-image">
+                    <img src="images/image2.png" alt="개인 프로젝트 로고" class="gallery-image">
+                </div>
+            </section>
+            <section class="canvas-section">
+                <h2>그림 그리기!</h2>
+                <canvas id="drawingCanvas"></canvas>
+                <button id="clearCanvas">지우기</button>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 학교 설문조사</p>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

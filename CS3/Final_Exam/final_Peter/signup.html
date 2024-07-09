@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="final_peter.css">
+</head>
+<body>
+    <div class="container">
+        <h2>회원가입</h2>
+        <form id="signUpForm" onsubmit="return signUp()">
+            <label for="newUsername">사용자 이름:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+            
+            <label for="newPassword">비밀번호:</label>
+            <input type="password" id="newPassword" name="newPassword" required>
+            
+            <input type="submit" value="회원가입">
+        </form>
+        <button onclick="deleteSignUpPage()">회원가입 페이지 삭제</button>
+    </div>
+    <script src="final_peter.js"></script>
+    <script>
+        function deleteSignUpPage() {
+            document.querySelector('.container').remove();
+        }
+    </script>
+</body>
+</html>
