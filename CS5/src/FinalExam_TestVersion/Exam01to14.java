@@ -1,4 +1,4 @@
-package FinalExam_Answer;
+package FinalExam_TestVersion;
 
 /**
  * 시간 : 1시간 10분(70분)
@@ -48,7 +48,7 @@ public class Exam01to14 {
      * 4) 보안이 강하기 때문에 프로그램이 안정적이다.
      */
     private static void Exam01() {
-        System.out.println("[문제1]: " + "3");
+        System.out.println("[문제1]: " + "");
     }
 
     /*
@@ -59,7 +59,7 @@ public class Exam01to14 {
      * 4) 서로 비슷한 성격의 자바 클래스들을 모아 놓은 폴더이다.
      */
     private static void Exam02() {
-        System.out.println("[문제2]: " + "4");
+        System.out.println("[문제2]: " + "");
     }
 
     /*
@@ -70,7 +70,7 @@ public class Exam01to14 {
      * 4) 0부터 배열의 길이-1
      */
     private static void Exam03() {
-        System.out.println("[문제3]: " + "4");
+        System.out.println("[문제3]: " + "");
     }
 
     /*
@@ -81,7 +81,7 @@ public class Exam01to14 {
      * 4) int[]arr = new int[5];
      */
     private static void Exam04() {
-        System.out.println("[문제4]: " + "1");
+        System.out.println("[문제4]: " + "");
     }
 
     /*
@@ -90,9 +90,10 @@ public class Exam01to14 {
      * 2) default – 같은 클래스 내에서만 접근 가능
      * 3) protected – 같은 패키지 내에서, 그리고 다른 패키지의 자손 클래스에서 접근 가능
      * 4) public – 서로 다른 패키지 내에서만 접근 가능
+     * 
      */
     private static void Exam05() {
-        System.out.println("[문제5]: " + "3");
+        System.out.println("[문제5]: " + "");
     }
 
     /*
@@ -101,7 +102,7 @@ public class Exam01to14 {
      * 2) X
      */
     private static void Exam06() {
-        System.out.println("[문제6]: " + "2");
+        System.out.println("[문제6]: " + "");
     }
 
     /*
@@ -110,7 +111,7 @@ public class Exam01to14 {
      * 2) X
      */
     private static void Exam07() {
-        System.out.println("[문제7]: " + "1");
+        System.out.println("[문제7]: " + "");
     }
 
     /*
@@ -121,7 +122,7 @@ public class Exam01to14 {
      * 4) 절차 지향
      */
     private static void Exam08() {
-        System.out.println("[문제8]: " + "4");
+        System.out.println("[문제8]: " + "");
     }
 
     /*
@@ -132,7 +133,7 @@ public class Exam01to14 {
      * 4) void myMethod() { return 0; }
      */
     private static void Exam09() {
-        System.out.println("[문제9]: " + "4");
+        System.out.println("[문제9]: " + "");
     }
 
     /*
@@ -143,7 +144,7 @@ public class Exam01to14 {
      * 4) 삼항 연산자는 조건문을 간단하게 표현할 때 사용된다.
      */
     private static void Exam10() {
-        System.out.println("[문제10]: " + "3");
+        System.out.println("[문제10]: " + "");
     }
 
     /*
@@ -154,7 +155,7 @@ public class Exam01to14 {
      * 4) break 문은 반복문을 종료시킨다.
      */
     private static void Exam11() {
-        System.out.println("[문제11]: " + "3");
+        System.out.println("[문제11]: " + "");
     }
 
     /*
@@ -165,7 +166,7 @@ public class Exam01to14 {
      * 4) void class MyClass {}
      */
     private static void Exam12() {
-        System.out.println("[문제12]: " + "1");
+        System.out.println("[문제12]: " + "");
     }
 
     /*
@@ -176,7 +177,7 @@ public class Exam01to14 {
      * 4) 생성자는 여러 개 정의할 수 없다.
      */
     private static void Exam13() {
-        System.out.println("[문제13]: " + "4");
+        System.out.println("[문제13]: " + "");
     }
 
     /*
@@ -187,7 +188,7 @@ public class Exam01to14 {
      * 4) 객체는 new 키워드를 사용하여 생성한다.
      */
     private static void Exam14() {
-        System.out.println("[문제14]: " + "3");
+        System.out.println("[문제14]: " + "");
     }
 
 }
